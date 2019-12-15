@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
+import com.springboot.microservice.example.simcardservice.entity.SimCard;
+import com.springboot.microservice.example.simcardservice.repository.SimCardRepository;
+
 @EnableDiscoveryClient
 @SpringBootApplication
 public class SimcardServiceApplication {

@@ -1,4 +1,4 @@
-package com.springboot.microservice.example.simcardservice;
+package com.springboot.microservice.example.simcardservice.entity;
 
 import java.io.Serializable;
 
