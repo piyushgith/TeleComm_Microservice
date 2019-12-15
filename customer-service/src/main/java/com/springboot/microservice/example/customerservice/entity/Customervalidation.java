@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Customervalidation")
@@ -23,6 +22,9 @@ public class Customervalidation implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@Column(name = "simcardNumber", length = 10, nullable = true)
+	private Long simcardNumber;
+	
 	@Column(name = "firstName", length = 15, nullable = false)
 	private String firstName;
 
@@ -49,11 +51,11 @@ public class Customervalidation implements Serializable {
 
 	}
 
-	public Customervalidation(int id, String firstName, String lastName, String email,
-			 Date dob,  String governmentId,
-			String address, String pincode) {
+	public Customervalidation(int id, Long simcardNumber, String firstName, String lastName, String email, Date dob,
+			String governmentId, String address, String pincode) {
 		super();
 		this.id = id;
+		this.simcardNumber = simcardNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -62,6 +64,8 @@ public class Customervalidation implements Serializable {
 		this.address = address;
 		this.pincode = pincode;
 	}
+
+
 
 	public int getId() {
 		return id;

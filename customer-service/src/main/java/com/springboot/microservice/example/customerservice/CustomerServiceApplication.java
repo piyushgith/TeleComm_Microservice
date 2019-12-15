@@ -32,13 +32,13 @@ public class CustomerServiceApplication {
 		clientHttpRequestFactory.setConnectTimeout(3000);
 		return new RestTemplate(clientHttpRequestFactory);
 	}
-	
+
 	@Bean
 	CommandLineRunner init(CustomerRepository customerRepository) {
 		return args -> {
 			List<Customervalidation> list = new ArrayList<>();
-			list.add(new Customervalidation(1, "Piyush", "Prasad", "piyush@gmail.com",  new Date(), "BSEFYHF485",
-					"Bangalore", "560100"));
+			list.add(new Customervalidation(1, 9009009001L, "Piyush", "Prasad", "piyush@gmail.com", new Date(),
+					"BSEFYHF485", "Bangalore", "560100"));
 
 			list.forEach(x -> {
 				customerRepository.save(x);
