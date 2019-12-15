@@ -26,4 +26,10 @@ spring:
       ddl-auto: create-drop
     show-sql: true      
 # create-drop create update
-           
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"         
