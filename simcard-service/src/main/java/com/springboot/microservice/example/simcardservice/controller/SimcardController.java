@@ -16,7 +16,7 @@ import com.springboot.microservice.example.simcardservice.repository.SimCardRepo
 import com.springboot.microservice.example.simcardservice.response.UserOfferResponse;
 
 @RestController
-@RequestMapping("/simcard-service")
+@RequestMapping("simcard-service")
 public class SimcardController {
 
 	@Autowired
@@ -36,13 +36,13 @@ public class SimcardController {
 	}
 
 	@GetMapping("/{simNumber}/find")
-	public String findSimData(@PathVariable("simNumber") Long simNumber) {
+	public UserOfferResponse findSimData(@PathVariable("simNumber") Long simNumber) {
 
 		String URL="http://USER-OFFER-SERVICE/useroffer-service/9009009001/find";
 		
 		UserOfferResponse userOfferResponse = restTemplate.getForObject(URL, UserOfferResponse.class);
 
-		return userOfferResponse != null ? "Found It" : "Issue";
+		return userOfferResponse != null ? userOfferResponse : null;
 
 	}
 }

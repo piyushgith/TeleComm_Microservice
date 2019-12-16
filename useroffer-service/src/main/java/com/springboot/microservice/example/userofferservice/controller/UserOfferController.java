@@ -15,7 +15,7 @@ import com.springboot.microservice.example.userofferservice.repository.UserOffer
 import com.springboot.microservice.example.userofferservice.response.UserOfferResponse;
 
 @RestController
-@RequestMapping("/useroffer-service")
+@RequestMapping("useroffer-service")
 public class UserOfferController {
 
 	@Autowired
