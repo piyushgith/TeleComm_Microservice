@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.springboot.microservice.example.simcardservice.entity.SimCard;
 import com.springboot.microservice.example.simcardservice.repository.SimCardRepository;
 import com.springboot.microservice.example.simcardservice.response.UserOfferResponse;
@@ -35,6 +36,7 @@ public class SimcardController {
 		return new ResponseEntity<List<SimCard>>(simCardRepository.findAll(), HttpStatus.OK);
 	}
 
+	@HystrixCommand(fallbackMethod = "findUserOfferFallBack")
 	@GetMapping("/{simNumber}/find")
 	public UserOfferResponse findSimData(@PathVariable("simNumber") Long simNumber) {
 
@@ -44,5 +46,9 @@ public class SimcardController {
 
 		return userOfferResponse != null ? userOfferResponse : null;
 
+	}
+
+	public UserOfferResponse findUserOfferFallBack(Long simNumber) {
+		return new UserOfferResponse();
 	}
 }

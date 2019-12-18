@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import com.springboot.microservice.example.simcardservice.repository.SimCardRepo
 
 @EnableDiscoveryClient
 @SpringBootApplication
+@EnableCircuitBreaker
 public class SimcardServiceApplication {
 
 	public static void main(String[] args) {
@@ -26,10 +28,14 @@ public class SimcardServiceApplication {
 	@Bean
 	@LoadBalanced
 	public RestTemplate getTemplate() {
-		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-		clientHttpRequestFactory.setConnectionRequestTimeout(3000);
-		clientHttpRequestFactory.setConnectTimeout(3000);
-		return new RestTemplate(clientHttpRequestFactory);
+		/*
+		 * HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new
+		 * HttpComponentsClientHttpRequestFactory();
+		 * clientHttpRequestFactory.setConnectionRequestTimeout(3000);
+		 * clientHttpRequestFactory.setConnectTimeout(3000); return new
+		 * RestTemplate(clientHttpRequestFactory);
+		 */		
+		return new RestTemplate();
 	}
 
 	@Bean
